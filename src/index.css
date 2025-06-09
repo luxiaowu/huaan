@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer components {
+	.main-container {
+		@apply h-screen relative bg-cover bg-no-repeat;
+		background-image: url("/img/main-bg.png");
+	}
+
+	.header-container {
+		background-image: url("/img/header-bg.png");
+		@apply h-[136px] flex justify-center bg-cover bg-no-repeat;
+	}
+	.block-container {
+		background-image: url("/img/block-bg.png");
+		@apply p-2.5 pb-4 w-[510px] h-[464px]  bg-cover bg-no-repeat flex flex-col gap-3;
+	}
+	.p1-block-container {
+		/*background-image: url("/img/p1-block-bg.png");*/
+		@apply p-3 flex justify-between items-center w-[218px] h-[90px] bg-cover bg-no-repeat;
+	}
+	.main-font {
+		@apply relative h-10 bg-clip-text text-[40px] text-transparent mt-4 font-semibold leading-none bg-gradient-to-b from-[#ffffff] to-[#2196FA];
+	}
+	.sub-font {
+		@apply inline bg-clip-text text-lg text-transparent font-semibold leading-none bg-gradient-to-b from-[#ffffff] to-[#84C6FF];
+	}
+}
