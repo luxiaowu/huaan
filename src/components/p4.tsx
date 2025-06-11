@@ -10,6 +10,17 @@ const options: EChartsOption = {
 		bottom: 20,
 		containLabel: true,
 	},
+	legend: {
+		data: ['2024', '2023'],
+		top: 0,
+		left: 'center',
+		textStyle: {
+			color: '#ffffff',
+			fontSize: 12,
+		},
+		itemWidth: 12,
+		itemHeight: 12,
+	},
 	xAxis: {
 		type: 'category',
 		data: ['第一产业增加值', '第二产业增加值', '第三产业增加值'],
@@ -24,7 +35,7 @@ const options: EChartsOption = {
 	},
 
 	yAxis: {
-		name: '单位: 个',
+		name: '单位: 亿元',
 		nameTextStyle: {
 			color: '#ffffff',
 			fontSize: 12,
@@ -39,13 +50,21 @@ const options: EChartsOption = {
 			fontSize: 12,
 		},
 	},
+	tooltip: {
+		trigger: 'axis',
+		axisPointer: {
+			type: 'shadow',
+		},
+	},
 	series: [
 		{
+			name: '2024',
 			data: [38, 80, 48],
 			type: 'bar',
 			barWidth: 12,
 		},
 		{
+			name: '2023',
 			data: [35, 69, 42],
 			type: 'bar',
 			barWidth: 12,

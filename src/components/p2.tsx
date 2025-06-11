@@ -75,13 +75,12 @@ function Item(prop: DataItem) {
 	return (
 		<div
 			className={
-				'flex gap-3 items-center border border-[#4BA5CE] border-l-4 border-l-[#4BA5CE] text-white font-semibold text-sm pl-3 h-10'
+				'flex gap-6 items-center border border-[#4BA5CE] border-l-4 border-l-[#4BA5CE] text-white font-semibold text-sm pl-3 h-10'
 			}
 		>
-			<div className={'truncate'}>{prop.country}</div>
+			<div className={'truncate max-w-16'}>{prop.country}</div>
 			<div className={'grow truncate w-0'}>{prop.content}</div>
 			<div className={'w-14'}>{prop.date}</div>
-			ps{' '}
 		</div>
 	);
 }
