@@ -1,0 +1,66 @@
+[
+    {
+        "code": "350629100",
+        "resv": 15,
+		"name":"华丰镇",
+        "resp": 10,
+        "respRate": "75%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629101",
+        "resv": 10,
+		"name":"丰山镇",
+        "resp": 10,
+        "respRate": "100%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629102",
+        "resv": 10,
+		"name":"沙建镇",
+        "resp": 9,
+        "respRate": "90%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629103",
+        "resv": 18,
+		"name":"新圩镇",
+        "resp": 12,
+        "respRate": "66%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629104",
+        "resv": 18,
+		"name":"高安镇",
+        "resp": 12,
+        "respRate": "66%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629200",
+        "resv": 8,
+		"name":"高车乡",
+        "resp": 8,
+        "respRate": "100%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629105",
+        "resv": 15,
+		"name":"仙都镇",
+        "resp": 12,
+        "respRate": "80%",
+        "finishRate": "100%"
+    },
+    {
+        "code": "350629203",
+        "resv": 20,
+		"name":"湖林乡",
+        "resp": 18,
+        "respRate": "90%",
+        "finishRate": "100%"
+    }
+]

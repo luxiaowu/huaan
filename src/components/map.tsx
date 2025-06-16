@@ -2,72 +2,144 @@ import * as echarts from 'echarts';
 import { useEffect, useRef } from 'react';
 import { Chart, type EChartsOption } from './charts.tsx';
 import mapJson from './map.json';
+import data from './screen_town.json';
 
 /**
  * 地图组件
  */
-export function Map() {
-	const optionRef = useRef<EChartsOption>();
+export function CenterMap() {
+	const optionRef = useRef<EChartsOption>(undefined);
 	const getOptions = () => {
+		// @ts-ignore
 		echarts.registerMap('华安县', mapJson);
 		optionRef.current = {
 			tooltip: {
-				trigger: 'item',
+				show: !!data,
+				showDelay: 20,
+				backgroundColor: 'transparent',
+				padding: 0,
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				formatter: (params: any) => {
+					// biome-ignore lint/style/noNonNullAssertion: <explanation>
+					const item = data.find((item) => item.name === params.name)!;
+					if (!item) {
+						return '';
+					}
+					return `
+						<div class="map-tooltip">
+							<div class="mb-5 sub-font text-base">${params.name}</div>
+							<div class="flex items-center gap-2 text-white mb-2">
+								<span class="point"></span>
+								<span>收到咨询</span>
+								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.resv}</span>
+							</div>
+							<div class="flex items-center gap-2 text-white mb-2">
+								<span class="point"></span>
+								<span>回复咨询</span>
+								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.resp}</span>
+							</div>
+							<div class="flex items-center gap-2 text-white mb-2">
+								<span class="point"></span>
+								<span>回复率</span>
+								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.respRate}</span>
+							</div>
+							<div class="flex items-center gap-2 text-white">
+								<span class="point"></span>
+								<span>办结率</span>
+								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.finishRate}</span>
+							</div>
+						</div>
+						`;
+				},
 			},
 			geo: [
 				{
+					left: 'center',
+					top: 10,
 					map: '华安县',
 					roam: false,
+
 					label: {
 						show: true,
-						color: '#333',
+						color: '#fff',
+						fontSize: 14,
 					},
 					itemStyle: {
-						normal: {
-							borderColor: '#c0f3fb',
-							borderWidth: 1,
-							shadowColor: '#8cd3ef',
-							shadowOffsetY: 10,
-							shadowBlur: 120,
-							areaColor: 'transparent',
+						borderColor: '#fff',
+						borderWidth: 1,
+						shadowColor: '#8cd3ef',
+						shadowOffsetY: 10,
+						shadowBlur: 50,
+						areaColor: {
+							type: 'linear',
+							x: 0,
+							y: 0,
+							x2: 0,
+							y2: 1,
+							colorStops: [
+								{
+									offset: 0,
+									color: 'rgba(0,222,255, 0.7)', // 0% 处的颜色
+								},
+								{
+									offset: 1,
+									color: 'rgba(9,29,217, 0.7)', // 100% 处的颜色
+								},
+							],
+							global: false, // 缺省为 false
 						},
 					},
 					emphasis: {
 						itemStyle: {
-							areaColor: '#ffcc00',
+							areaColor: {
+								type: 'linear',
+								x: 0,
+								y: 0,
+								x2: 0,
+								y2: 1,
+								colorStops: [
+									{
+										offset: 0,
+										color: 'rgba(0,222,255, 1)', // 0% 处的颜色
+									},
+									{
+										offset: 1,
+										color: 'rgba(9,29,217, 1)', // 100% 处的颜色
+									},
+								],
+								global: false, // 缺省为 false
+							},
+						},
+						label: {
+							show: true,
+							color: '#fff',
+							fontSize: 14,
+							fontWeight: 'bold',
 						},
 					},
+					width: 480,
+					height: 480,
 				},
 			],
 			series: [
 				{
-					name: '华安县',
 					type: 'map',
 					map: '华安县',
-					roam: true,
-					label: {
-						show: true,
-						color: '#333',
-					},
-					itemStyle: {
-						areaColor: '#eee',
-						borderColor: '#444',
-						borderWidth: 1,
-					},
-					emphasis: {
-						itemStyle: {
-							areaColor: '#ffcc00',
-						},
+					geoIndex: 0,
+					data: data,
+					select: {
+						disabled: true,
 					},
 				},
 			],
 		};
 	};
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		getOptions();
 	}, []);
 	return (
-		<div className={'h-0 grow'}>
+		<div className={'h-0 grow map-container'}>
 			<Chart option={optionRef.current} notMerge />
 		</div>
 	);

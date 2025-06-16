@@ -37,4 +37,32 @@
 		background-image: url("/img/gender-bg.png");
 		@apply w-[194px] h-[57px] bg-no-repeat;
 	}
+	.map-container {
+		background-image: url("/img/map-bg.png");
+		@apply bg-no-repeat bg-center;
+	}
+	.bottom-container {
+		background-image: url("/img/bottom-bg.png");
+		@apply w-[810px] h-[130px] bg-no-repeat;
+	}
+	.bottom-data-text {
+		background-image: url("/img/bg-data-text.png");
+		@apply w-[100px] h-[28px] bg-no-repeat bg-center;
+	}
+	.bottom-data {
+		background-image: url("/img/bg-data.png");
+		@apply bg-center bg-no-repeat;
+		background-position-y: 14px;
+	}
+	.tooltip-container {
+		@apply bg-transparent p-0;
+	}
+	.map-tooltip {
+		background-image: url("/img/map-item.png");
+		@apply w-[196px] h-[173px] bg-transparent! bg-no-repeat bg-right p-4;
+	}
+	.point {
+		background-image: url("/img/point.png");
+		@apply size-5 bg-no-repeat bg-center;
+	}
 }

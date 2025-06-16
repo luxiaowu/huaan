@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Bottom } from './components/bottom.tsx';
 import { Header } from './components/header';
-import { Map } from './components/map.tsx';
+import { CenterMap } from './components/map.tsx';
 import { Overall } from './components/overall.tsx';
 import { P1 } from './components/p1.tsx';
 import { P2 } from './components/p2.tsx';
@@ -41,7 +42,8 @@ export default function App() {
 					</div>
 					<div className={' grow flex flex-col gap-6'}>
 						<Overall />
-						<Map />
+						<CenterMap />
+						<Bottom />
 					</div>
 					<div className={'flex flex-col gap-6'}>
 						<P3 />

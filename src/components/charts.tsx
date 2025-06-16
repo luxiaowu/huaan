@@ -68,23 +68,3 @@ export function Chart(props: ChartProps) {
 		/>
 	);
 }
-
-// Example chart component with default options
-export function LineChart(
-	props: Omit<ChartProps, 'option'> & { data?: number[] },
-) {
-	const { data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], ...rest } = props;
-
-	const option: EChartsOption = {
-		xAxis: {},
-		yAxis: {},
-		series: [
-			{
-				type: 'line',
-				data,
-			},
-		],
-	};
-
-	return <Chart {...rest} option={option} />;
-}
