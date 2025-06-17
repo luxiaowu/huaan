@@ -1,9 +1,21 @@
 import * as echarts from 'echarts';
-import { type CSSProperties, type ReactNode, useEffect, useRef } from 'react';
+import {
+	type CSSProperties,
+	type ReactNode,
+	type RefObject,
+	useEffect,
+	useImperativeHandle,
+	useRef,
+} from 'react';
 
 export type EChartsOption = echarts.EChartsOption;
 
+export type ChartInsGetter = {
+	getInstance: () => echarts.ECharts | null;
+};
+
 type ChartProps = {
+	ref?: RefObject<ChartInsGetter | null>;
 	className?: string;
 	style?: CSSProperties;
 	option?: EChartsOption;
@@ -27,22 +39,17 @@ export function Chart(props: ChartProps) {
 	const chartRef = useRef<HTMLDivElement>(null);
 	const chartInstance = useRef<echarts.ECharts | null>(null);
 
-	// Initialize chart
 	useEffect(() => {
-		// Initialize chart
 		if (chartRef.current) {
 			chartInstance.current = echarts.init(chartRef.current);
 		}
 
-		// Handle window resize
 		const resizeHandler = () => {
 			if (chartInstance.current) {
 				chartInstance.current.resize();
 			}
 		};
 		window.addEventListener('resize', resizeHandler);
-
-		// Cleanup
 		return () => {
 			window.removeEventListener('resize', resizeHandler);
 			if (chartInstance.current) {
@@ -52,14 +59,19 @@ export function Chart(props: ChartProps) {
 		};
 	}, []);
 
-	// Update chart option
 	useEffect(() => {
 		if (chartInstance.current && option) {
-			// Set chart option
 			chartInstance.current.setOption(option, notMerge, lazyUpdate);
 		}
 	}, [option, notMerge, lazyUpdate]);
 
+	useImperativeHandle(
+		props.ref,
+		() => ({
+			getInstance: () => chartInstance.current,
+		}),
+		[chartInstance.current],
+	);
 	return (
 		<div
 			ref={chartRef}
