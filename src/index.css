@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+	body {
+		@apply bg-[#022988]
+	}
+}
+
 @layer components {
 	.main-container {
 		@apply absolute left-0 top-0 bg-no-repeat;

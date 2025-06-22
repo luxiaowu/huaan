@@ -28,11 +28,13 @@ export default function App() {
 			window.removeEventListener('resize', handleResize);
 		};
 	}, []);
+	// 计算左侧偏移量
+	const leftOffset = (window.innerWidth - 1920 * scale) / 2;
 	return (
 		<div className={'relative w-screen h-screen overflow-hidden'}>
 			<div
-				className={'main-container origin-top-left'}
-				style={{ transform: `scale(${scale})` }}
+				className={'main-container origin-top-left mx-auto'}
+				style={{ transform: `scale(${scale}) translateX(${leftOffset}px)` }}
 			>
 				<Header />
 				<div className={'z-10 absolute inset-6 top-[100px] flex gap-6'}>

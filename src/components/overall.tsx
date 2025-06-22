@@ -33,14 +33,14 @@ const blocks = [
 	{
 		icon: B5,
 		label: '耕地面积',
-		unit: '万亩',
-		value: 6.27,
+		unit: '公顷',
+		value: 4436,
 	},
 	{
 		icon: B6,
 		label: '园地面积',
-		unit: '万亩',
-		value: 24.61,
+		unit: '公顷',
+		value: 16031,
 	},
 ];
 
