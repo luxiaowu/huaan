@@ -22,9 +22,12 @@ const options: EChartsOption = {
 		textStyle: {
 			color: '#ffffff',
 		},
-		formatter: function (params) {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		formatter: (params: any) => {
 			let result = `<strong>${params[0].axisValue}</strong><br/>`;
-			params.forEach((param) => {
+			// biome-ignore lint/complexity/noForEach: <explanation>
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			params.forEach((param: any) => {
 				result += `${param.marker} ${param.seriesName}: <strong>${param.value.toFixed(2)}</strong> 元<br/>`;
 			});
 			return result;

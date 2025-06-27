@@ -19,17 +19,17 @@ const data: {
 }[] = [
 	{
 		title: '收到咨询',
-		value: '50',
+		value: '75',
 		icon: 'receive',
 	},
 	{
 		title: '回复咨询',
-		value: '40',
+		value: '67',
 		icon: 'replyRate',
 	},
 	{
 		title: '回复率',
-		value: '80%',
+		value: '89%',
 		icon: 'replay',
 	},
 	{
