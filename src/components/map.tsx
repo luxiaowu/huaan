@@ -1,9 +1,9 @@
 import * as echarts from 'echarts';
 import { useEffect, useRef } from 'react';
 import { Chart, type ChartInsGetter, type EChartsOption } from './charts';
-// import mapJson from './map.json';
+import mapJson from './map.json';
 import data from './screen_town.json';
-import mapJson from './updated_huaan_county.json';
+// import mapJson from './updated_huaan_county.json';
 
 /**
  * 地图组件
