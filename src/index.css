@@ -2,7 +2,8 @@
 
 @layer base {
 	body {
-		@apply bg-[#022988]
+		@apply bg-[#011736]
+		
 	}
 }
 
@@ -11,11 +12,15 @@
 		@apply absolute left-0 top-0 bg-no-repeat;
 		background-image: url("/img/main-bg.png");
 		width: 1920px;
-		height: 1080px;
+		height: 1080px; 
 	}
 	.header-container {
 		background-image: url("/img/header-bg.png");
 		@apply h-[136px] flex justify-center bg-no-repeat;
+	}
+	.main-return{
+		background-image: url("/img/bg-return.png");
+		@apply w-[128px] h-[31px]  bg-no-repeat bg-contain   ;
 	}
 	.block-container {
 		background-image: url("/img/block-bg.png");

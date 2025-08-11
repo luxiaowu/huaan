@@ -17,7 +17,7 @@ export function Block(prop: BlockProps) {
 					'h-9 pl-3  flex items-center bg-gradient-to-r to-[#002C93] from-[#0073D6]'
 				}
 			>
-				<div className={'sub-font'}>{title}</div>
+				<div className={'sub-font text-[#42DEFF]'}>{title}</div>
 			</div>
 			<div className={'h-0 grow flex flex-col'}>{children}</div>
 		</div>

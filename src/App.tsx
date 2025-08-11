@@ -37,6 +37,14 @@ export default function App() {
 				style={{ transform: `scale(${scale}) translateX(${leftOffset}px)` }}
 			>
 				<Header />
+				<div>
+					<div>总览</div>
+					<div>社情民意</div>
+					<div>工作指挥</div>
+					<div>县域产业</div>
+					<div>平台动态</div>
+					<div>电商运营</div>
+				</div>
 				<div className={'z-10 absolute inset-6 top-[100px] flex gap-6'}>
 					<div className={'flex flex-col gap-6'}>
 						<P1 />

@@ -36,22 +36,22 @@ export function CenterMap() {
 							<div class="flex items-center gap-2 text-white mb-1.5">
 								<span class="point"></span>
 								<span>收到咨询</span>
-								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.resv}</span>
+								<span class="ml-auto text-[#5BDEAB] text-lg italic">${item.resv}</span>
 							</div>
 							<div class="flex items-center gap-2 text-white mb-1.5">
 								<span class="point"></span>
 								<span>回复咨询</span>
-								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.resp}</span>
+								<span class="ml-auto text-[#5BDEAB] text-lg italic">${item.resp}</span>
 							</div>
 							<div class="flex items-center gap-2 text-white mb-1.5">
 								<span class="point"></span>
 								<span>回复率</span>
-								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.respRate}</span>
+								<span class="ml-auto text-[#5BDEAB] text-lg italic">${item.respRate}</span>
 							</div>
 							<div class="flex items-center gap-2 text-white">
 								<span class="point"></span>
 								<span>办结率</span>
-								<span class="ml-auto text-[#2DE8F0] text-lg italic">${item.finishRate}</span>
+								<span class="ml-auto text-[#5BDEAB] text-lg italic">${item.finishRate}</span>
 							</div>
 						</div>
 						`;

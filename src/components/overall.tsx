@@ -86,7 +86,7 @@ export function GenderContainer(props: GenderContainerProps) {
  */
 export function Overall() {
 	return (
-		<div className={'border border-[#1887FA] bg-[#002E99] pt-2'}>
+		<div className={'border border-[#1887FA] bg-[#011736] pt-2'}>
 			<div className={'main-font text-center text-xl mt-0 '}>
 				华安县户籍人口
 			</div>

@@ -130,7 +130,7 @@ function Sub(prop: SubProps) {
 		>
 			<div className={'flex flex-col justify-between'}>
 				<div className={'text-white'}>{title}</div>
-				<div className={'italic text-[30px] text-[#2DE8F0]'}>{value}</div>
+				<div className={'italic text-[30px] text-[#5BDEAB]'}>{value}</div>
 			</div>
 			<img className={'size-14 object-center'} src={iconMap[icon]} alt="" />
 		</div>
