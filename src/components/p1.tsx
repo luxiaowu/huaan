@@ -17,27 +17,27 @@ const data: {
 	value: string;
 	icon: keyof typeof iconMap;
 }[] = [
-	{
-		title: '收到咨询',
-		value: '75',
-		icon: 'receive',
-	},
-	{
-		title: '回复咨询',
-		value: '67',
-		icon: 'replyRate',
-	},
-	{
-		title: '回复率',
-		value: '89%',
-		icon: 'replay',
-	},
-	{
-		title: '完成率',
-		value: '100%',
-		icon: 'finishRate',
-	},
-];
+		{
+			title: '收到咨询',
+			value: '75',
+			icon: 'receive',
+		},
+		{
+			title: '回复咨询',
+			value: '67',
+			icon: 'replyRate',
+		},
+		{
+			title: '回复率',
+			value: '89%',
+			icon: 'replay',
+		},
+		{
+			title: '完成率',
+			value: '100%',
+			icon: 'finishRate',
+		},
+	];
 
 const options: EChartsOption = {
 	color: ['#00FFBE', '#00A2FF', '#F2C400', '#6622FF'],
