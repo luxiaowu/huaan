@@ -2,8 +2,28 @@ import * as echarts from 'echarts';
 import { useEffect, useRef } from 'react';
 import { Block } from '../../components/block';
 
-// 主数据
-export function P1() {
+// 定义图表数据
+const categoryData = [
+  { name: '环境', value: 250 },
+  { name: '交通', value: 200 },
+  { name: '公共设施', value: 300 },
+  { name: '安全', value: 150 },
+  { name: '其他', value: 200 }
+];
+
+const regionData = [
+  { name: '华丰', value: 120 },
+  { name: '丰山', value: 100 },
+  { name: '沙建', value: 90 },
+  { name: '新圩', value: 110 },
+  { name: '高安', value: 70 },
+  { name: '高车', value: 60 },
+  { name: '马坑', value: 50 },
+  { name: '湖林', value: 80 },
+  { name: '仙都', value: 110 }
+];
+
+export function P3() {
   const chartRef1 = useRef<HTMLDivElement>(null);
   const chartRef2 = useRef<HTMLDivElement>(null);
   const chartInstance1 = useRef<echarts.ECharts | null>(null);
@@ -15,16 +35,6 @@ export function P1() {
     if (chartRef1.current) {
       chartInstance1.current = echarts.init(chartRef1.current);
       const option1 = {
-        title: {
-          text: '便民咨询',
-          textStyle: {
-            color: '#ffffff',
-            fontSize: 18,
-            fontWeight: 'bold'
-          },
-          left: 'center',
-          top: 10
-        },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -32,7 +42,7 @@ export function P1() {
           }
         },
         grid: {
-          top: 80,
+          top: 20,
           left: '5%',
           right: '5%',
           bottom: '10%',
@@ -40,7 +50,7 @@ export function P1() {
         },
         xAxis: {
           type: 'category',
-          data: ['政策', '村务', '生活', '农业', '其他'],
+          data: categoryData.map(item => item.name),
           axisLine: {
             lineStyle: {
               color: '#4F9FFF'
@@ -71,7 +81,7 @@ export function P1() {
         series: [
           {
             type: 'bar',
-            data: [300, 280, 290, 320, 200],
+            data: categoryData.map(item => item.value),
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#00FFBE' },
@@ -89,6 +99,12 @@ export function P1() {
     if (chartRef2.current) {
       chartInstance2.current = echarts.init(chartRef2.current);
       const option2 = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         grid: {
           top: 20,
           left: '5%',
@@ -96,15 +112,9 @@ export function P1() {
           bottom: '10%',
           containLabel: true
         },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
         xAxis: {
           type: 'category',
-          data: ['华丰', '丰山', '沙里', '新丰', '高安', '高丰', '马坑', '湖林', '仙部'],
+          data: regionData.map(item => item.name),
           axisLine: {
             lineStyle: {
               color: '#4F9FFF'
@@ -131,12 +141,13 @@ export function P1() {
           axisLabel: {
             color: '#ffffff',
             fontSize: 12
-          }
+          },
+          max: 150
         },
         series: [
           {
             type: 'bar',
-            data: [140, 120, 90, 130, 80, 70, 60, 100, 120],
+            data: regionData.map(item => item.value),
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                 { offset: 0, color: '#00A2FF' },
@@ -165,29 +176,26 @@ export function P1() {
   }, []);
 
   return (
+    <Block title={'随手拍'}>
+      <div className="bg-[#0C1E3E] rounded-lg p-4 h-full flex flex-col">
+        {/* 顶部统计数据 */}
+        <div className="flex justify-center items-center gap-12 mb-8 mt-4">
+          <div className="text-center">
+            <div className="text-white text-lg mb-1">上传数量</div>
+            <div className="text-[#00FFBE] text-4xl font-bold">842</div>
+          </div>
+          <div className="text-center">
+            <div className="text-white text-lg mb-1">回复率</div>
+            <div className="text-[#00A2FF] text-4xl font-bold">95.2%</div>
+          </div>
+        </div>
 
-    <Block title={'便民咨询'}>
-    <div className="bg-[#0C1E3E] rounded-lg p-4 h-full flex flex-col ">
-      {/* 顶部统计数据 */}
-      <div className="flex justify-between items-center mb-6 mt-2">
-        <div className="text-center">
-          <div className="text-white text-lg mb-1">咨询数量</div>
-          <div className="text-[#00FFBE] text-3xl font-bold">1,256</div>
-        </div>
-        <div className="text-center">
-          <div className="text-white text-lg mb-1">回复率</div>
-          <div className="text-[#00A2FF] text-3xl font-bold">98.7%</div>
-        </div>
+        {/* 第一个图表 - 按类别统计 */}
+        <div ref={chartRef1} className="h-[40%] w-full mb-6"></div>
+
+        {/* 第二个图表 - 按地区统计 */}
+        <div ref={chartRef2} className="h-[40%] w-full"></div>
       </div>
-
-      {/* 第一个图表 - 按类别统计 */}
-      <div ref={chartRef1} className="h-[35%] w-full mb-4"></div>
-
-      {/* 第二个图表 - 按地区统计 */}
-      <div ref={chartRef2} className="h-[45%] w-full"></div>
-    </div>
-    
-		
-		</Block>
+    </Block>
   );
 }

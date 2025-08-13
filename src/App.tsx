@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import PublicOpinion from "./pages/PublicOpinion";
 import WorkCommand from "./pages/WorkCommand";
 import CountryIndustry from "./pages/CountryIndustry";
+import PlatformDynamic from "./pages/PlatformDynamic";
+import EcommerceOperation from "./pages/EcommerceOperation";
 
 export default function App() {
   const [active, setActive] = useState("总览");
@@ -61,6 +63,8 @@ export default function App() {
         {active === "社情民意" && <PublicOpinion />}
         {active === "工作指挥" && <WorkCommand />}
         {active === "县域产业" && <CountryIndustry />}
+        {active === "平台动态" && <PlatformDynamic />}
+        {active === "电商运营" && <EcommerceOperation />}
       </div>
     </div>
   );
