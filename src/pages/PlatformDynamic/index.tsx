@@ -1,7 +1,7 @@
 import { Bottom } from "../../components/bottom.tsx";
 import { CenterMap } from "../../components/map.tsx";
 import { Overall } from "../../components/overall.tsx";
-import { P1 } from "../../components/p1.tsx";
+import P1 from "./P1.tsx";
 
 const PlatformDynamic = () => {
   return (

@@ -4,6 +4,8 @@ type DataItem = {
 	country: string;
 	content: string;
 	date: string;
+	id:number;
+
 };
 
 const data: DataItem[] = [
@@ -11,51 +13,68 @@ const data: DataItem[] = [
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:3
+
 	},
 	{
 		country: '马坑村',
 		content: '华安县2025年1-3月主要经济指标完成.',
 		date: '05-27',
+		id:1
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:2
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:4
+
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:5
+
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:6
+
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:7
+
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:8
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:9
+
 	},
 	{
 		country: '马坑村',
 		content: '2025年5月低保高龄资金发放名单',
 		date: '05-27',
+		id:10
+
 	},
 ];
 
@@ -64,7 +83,7 @@ export function P2() {
 		<Block title={'通知公告'}>
 			<div className={'h-0 grow overflow-y-auto flex flex-col gap-3 px-4'}>
 				{data.map((item) => {
-					return <Item {...item} key={item.content} />;
+					return <Item {...item} key={item.id} />;
 				})}
 			</div>
 		</Block>
