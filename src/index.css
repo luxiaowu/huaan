@@ -16,7 +16,7 @@
 	}
 	.header-container {
 		background-image: url("/img/header-bg.png");
-		@apply h-[136px] flex justify-center bg-no-repeat;
+		@apply h-[88px] flex justify-center bg-no-repeat;
 	}
 	.main-return{
 		background-image: url("/img/bg-return.png");

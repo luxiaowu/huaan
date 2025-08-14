@@ -38,8 +38,9 @@ export default function App() {
         className={"main-container origin-top-left mx-auto"}
         style={{ transform: `scale(${scale}) translateX(${leftOffset}px)` }}
       >
-        <Header />
-        <div className="flex gap-10 justify-center absolute left-0 right-0 top-[110px] text-white text-xl">
+        <Header active={active} setActive={setActive} />
+
+        {/* <div className="flex gap-10 justify-center absolute left-0 right-0 top-[110px] text-white text-xl">
           {[
             "总览",
             "社情民意",
@@ -58,13 +59,15 @@ export default function App() {
               {item}
             </div>
           ))}
+        </div> */}
+        <div className={"z-10 absolute inset-6 top-[80px] flex gap-6"}>
+          {active === "总览" && <Home />}
+          {active === "社情民意" && <PublicOpinion />}
+          {active === "工作指挥" && <WorkCommand />}
+          {active === "县域产业" && <CountryIndustry />}
+          {active === "平台动态" && <PlatformDynamic />}
+          {active === "电商运营" && <EcommerceOperation />}
         </div>
-        {active === "总览" && <Home />}
-        {active === "社情民意" && <PublicOpinion />}
-        {active === "工作指挥" && <WorkCommand />}
-        {active === "县域产业" && <CountryIndustry />}
-        {active === "平台动态" && <PlatformDynamic />}
-        {active === "电商运营" && <EcommerceOperation />}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import * as echarts from "echarts";
 import {
   type CSSProperties,
   type ReactNode,
@@ -7,6 +6,7 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
+import * as echarts from 'echarts';
 
 export type EChartsOption = echarts.EChartsOption;
 

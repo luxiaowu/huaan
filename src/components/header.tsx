@@ -2,48 +2,53 @@
  * 大屏头部
  */
 
-import returnIcon from '../assets/header/return.png';
-import timeIcon from '../assets/header/icon-time.png';
+import returnIcon from "../assets/header/return.png";
 
-export function Header() {
-
-
-  const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-    const weekday = weekdays[date.getDay()];
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
-    return {
-      dateString: `${year}年${month}月${day}日  ${weekday}`,
-      timeString: `${hours}:${minutes}:${seconds}`
-    };
-  };
-
-  const { dateString } = formatDate(new Date());
+export function Header({
+  active,
+  setActive,
+}: {
+  active: string;
+  setActive: (active: string) => void;
+}) {
+  const left = ["总览", "社情民意", "工作指挥"];
+  const right = ["县域产业", "平台动态", "电商运营"];
 
   return (
-    <div className={'header-container'}>
-		<div className={' absolute left-6  top-10 flex flex-row gap-8'}>
-			<div className={'main-return flex  items-center cursor-pointer p-4 gap-1'} onClick={()=>{
-				window.location.href="http://182.44.75.59:9100/report/reports/aj?code=8XfWdlBP"
-			}}>
-				<img src={returnIcon} alt="返回" className="mr-2" />
-				<span className="text-base text-[#54D5FF]">返回主页</span>
-			</div>
-			<div className="text-white flex flex-row items-center flex flex-row gap-1">
-				<img src={timeIcon} alt="" />
-				<div className="text-lg font-medium">{dateString}</div>
-      		</div>
-		</div>
-      
-      
-      <div className={'main-font'}>华安数字乡村大数据平台</div>
-     
+    <div className={"header-container relative"}>
+      <div
+        className={
+          "absolute left-6 top-9 main-return flex items-center cursor-pointer p-4 gap-1"
+        }
+      >
+        <img src={returnIcon} alt="返回" className="mr-2" />
+        <span className="text-base text-[#54D5FF]">返回主页</span>
+      </div>
+      <div className="flex justify-between items-center">
+        <div className="flex gap-10 pl-10 pt-4">
+          {left.map((item) => (
+            <div
+              className={`text-2xl  cursor-pointer ${
+                active === item ? "text-[#00FFFF] border-b-2" : "text-white"
+              }`}
+              key={item}
+              onClick={() => setActive(item)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className="w-[900px] main-font text-center cursor-pointer">
+          华安数字乡村大数据平台
+        </div>
+        <div className="flex gap-10 pl-10 pt-4">
+          {right.map((item) => (
+            <div className="text-2xl text-white" key={item}>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
