@@ -14,10 +14,23 @@ export function Block(prop: BlockProps) {
 		<div className={`block-container ${prop.className || ''}`}>
 			<div
 				className={
-					'h-9 pl-3  flex items-center bg-gradient-to-r to-[#002C93] from-[#0073D6]'
+					'h-9 pl-3 flex items-center'
 				}
+				style={{
+					background: 'linear-gradient(90deg, #0072D5 0%, rgba(1,24,55,0.2) 100%)'
+				}}
 			>
-				<div className={'sub-font text-[#42DEFF]'}>{title}</div>
+				<div style={{
+					fontFamily: 'Inter, Inter',
+					fontWeight: 'normal',
+					fontSize: '20px',
+					color: '#42DEFF',
+					textAlign: 'left',
+					fontStyle: 'normal',
+					textTransform: 'none'
+				}}>
+					{title}
+				</div>
 			</div>
 			<div className={'h-0 grow flex flex-col'}>{children}</div>
 		</div>
