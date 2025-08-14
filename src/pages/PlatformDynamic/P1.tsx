@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Block } from '../../components/block';
-import { Chart, EChartsOption } from '../../components/charts';
 import * as echarts from 'echarts';
+import type {EChartsOption} from 'echarts';
+import { Chart } from "../../components/charts";
 
 const P1 = () => {
   const [registerTrendOption, setRegisterTrendOption] = useState<EChartsOption>({});
@@ -119,14 +120,14 @@ const P1 = () => {
 
   return (
     <Block title={'村民用户注册及活跃度统计'}>
-      <div className="bg-[#0C1E3E] rounded-lg p-4 h-full flex flex-col space-y-4">
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+      <div className="bg-[#0C1E3E] rounded-lg  h-full flex flex-col space-y-4">
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-1">总注册用户数</h3>
             <p className="text-2xl font-bold text-white">28,654人</p>
             <p className="text-xs text-green-400">↑12.5% 同比增长</p>
           </div>
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-1">实名认证率</h3>
             <p className="text-2xl font-bold text-white">92.3%</p>
             <p className="text-xs text-green-400">↑3.8% 环比增长</p>
@@ -134,35 +135,35 @@ const P1 = () => {
         </div>
 
         {/* 顶部数据卡片 - 第二行：月活跃用户、活跃率和平均使用时长 */}
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-1">月活跃用户</h3>
             <p className="text-2xl font-bold text-white">15,286</p>
           </div>
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-1">活跃率</h3>
             <p className="text-2xl font-bold text-white">53.3%</p>
           </div>
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-1">平均使用时长</h3>
             <p className="text-2xl font-bold text-white">23分钟</p>
           </div>
         </div>
 
         {/* 图表区域 */}
-        <div className="grid grid-cols-2 gap-4 h-64 mb-4">
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+        <div className="grid grid-cols-2 gap-2 h-64 mb-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-2">近6个月用户注册趋势</h3>
             <Chart option={registerTrendOption} className="w-full h-48" />
           </div>
-          <div className="bg-[#0F2B57] rounded-lg p-4">
+          <div className="bg-[#0F2B57] rounded-lg p-2">
             <h3 className="text-sm text-blue-300 mb-2">各乡镇用户占比</h3>
             <Chart option={userDistributionOption} className="w-full h-48" />
           </div>
         </div>
 
         {/* 底部活跃度趋势图 */}
-        <div className="bg-[#0F2B57] rounded-lg p-4 h-48">
+        <div className="bg-[#0F2B57] rounded-lg p-2 h-48">
           <h3 className="text-sm text-blue-300 mb-2">用户活跃度趋势</h3>
           <Chart option={activityTrendOption} className="w-full h-36" />
         </div>
