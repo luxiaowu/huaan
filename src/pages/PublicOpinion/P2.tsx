@@ -108,23 +108,24 @@ export function P2() {
   return (
     <Block title={'数据统计'}>
       <div className="bg-[#0C1E3E] rounded-lg p-4 h-full flex flex-col">
-        {/* 顶部标签页 - 精确的3等分布局 */}
-        <div className="flex justify-center mb-6 w-full">
-          <div className="flex gap-1 bg-[rgba(12,30,62,0.6)] p-1 rounded-lg border ">
+        {/* 顶部标签页 - 内容撑开宽度 */}
+        <div className="flex justify-center  w-full">
+          <div className="inline-flex bg-[rgba(12,30,62,0.8)] rounded-lg p-1 shadow-lg gap-2">
             {Object.keys(tabData).map((tab) => (
-              <div
+              <button
                 key={tab}
                 onClick={() => handleTabChange(tab)}
-                className={`flex-1 w-1/3 px-5 py-2 text-sm font-medium transition-all duration-300 rounded-md border-[rgba(79,159,255,0.2)] ${activeTab === tab
-                  ? 'text-[#00FFFF] text-white shadow-md'
-                  : 'text-[#5BDEAB] hover:text-white hover:bg-[rgba(30,80,144,0.2)]'
-                  }`}
+                className={`px-6 py-2.5 text-sm font-medium transition-all bg-[rgba(30,80,144,0.4)] duration-300 whitespace-nowrap  border border-[rgba(79,159,255,0.3)] ${activeTab === tab
+                  ? ' text-[#00FFFF] shadow-inner'
+                  : 'text-[#5BDEAB] hover:text-white hover:bg-[rgba(30,80,144,0.4)]'
+                  } rounded-md`}
                 style={{
                   borderRadius: '4px',
+                  margin: '0 1px'
                 }}
               >
                 {tab}
-              </div>
+              </button>
             ))}
           </div>
         </div>
