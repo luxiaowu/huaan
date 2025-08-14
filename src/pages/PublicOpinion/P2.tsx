@@ -1,6 +1,7 @@
-import * as echarts from 'echarts';
 import { useEffect, useRef, useState } from 'react';
 import { Block } from '../../components/block';
+import { Chart } from '../../components/charts';
+import type { EChartsOption } from '../../components/charts';
 
 // 定义不同标签页的数据
 const tabData = {
@@ -28,8 +29,6 @@ const tabData = {
 };
 
 export function P2() {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const chartInstance = useRef<echarts.ECharts | null>(null);
   const [activeTab, setActiveTab] = useState('供需大厅');
   const [data, setData] = useState(tabData['供需大厅']);
 
@@ -37,121 +36,97 @@ export function P2() {
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setData(tabData[tab]);
-    // 更新图表数据
-    updateChart();
   };
 
-  // 更新图表
-  const updateChart = () => {
-    if (chartInstance.current) {
-      chartInstance.current.setOption({
-        xAxis: {
-          data: data.categories
-        },
-        series: [
-          {
-            data: data.chartData
+  // 图表配置
+  const chartOption: EChartsOption = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    grid: {
+      top: 20,
+      left: '5%',
+      right: '5%',
+      bottom: '10%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: data.categories,
+      axisLine: {
+        lineStyle: {
+          color: '#4F9FFF'
+        }
+      },
+      axisLabel: {
+        color: '#ffffff',
+        fontSize: 12
+      }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: {
+        lineStyle: {
+          color: 'rgba(79, 159, 255, 0.2)'
+        }
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#4F9FFF'
+        }
+      },
+      axisLabel: {
+        color: '#ffffff',
+        fontSize: 12
+      }
+    },
+    series: [
+      {
+        type: 'bar',
+        data: data.chartData,
+        itemStyle: {
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              { offset: 0, color: '#00FFBE' },
+              { offset: 1, color: '#0080FF' }
+            ]
           }
-        ]
-      });
-    }
+        },
+        barWidth: 30
+      }
+    ]
   };
-
-  // 初始化图表
-  useEffect(() => {
-    if (chartRef.current) {
-      chartInstance.current = echarts.init(chartRef.current);
-      const option = {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        grid: {
-          top: 20,
-          left: '5%',
-          right: '5%',
-          bottom: '10%',
-          containLabel: true
-        },
-        xAxis: {
-          type: 'category',
-          data: data.categories,
-          axisLine: {
-            lineStyle: {
-              color: '#4F9FFF'
-            }
-          },
-          axisLabel: {
-            color: '#ffffff',
-            fontSize: 12
-          }
-        },
-        yAxis: {
-          type: 'value',
-          splitLine: {
-            lineStyle: {
-              color: 'rgba(79, 159, 255, 0.2)'
-            }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#4F9FFF'
-            }
-          },
-          axisLabel: {
-            color: '#ffffff',
-            fontSize: 12
-          }
-        },
-        series: [
-          {
-            type: 'bar',
-            data: data.chartData,
-            itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#00FFBE' },
-                { offset: 1, color: '#0080FF' }
-              ])
-            },
-            barWidth: 30
-          }
-        ]
-      };
-      chartInstance.current.setOption(option);
-    }
-
-    // 响应窗口大小变化
-    const resizeHandler = () => {
-      chartInstance.current?.resize();
-    };
-    window.addEventListener('resize', resizeHandler);
-
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-      chartInstance.current?.dispose();
-    };
-  }, []);
 
   return (
     <Block title={'数据统计'}>
       <div className="bg-[#0C1E3E] rounded-lg p-4 h-full flex flex-col">
-        {/* 顶部标签页 - 使用Tailwind CSS实现红框效果 */}
-        <div className="flex border-2 border-[#0080FF] rounded-md overflow-hidden mb-6 w-fit shadow-lg shadow-[#0080FF]/20">
-          {Object.keys(tabData).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => handleTabChange(tab)}
-              className={`px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
-                activeTab === tab
-                  ? 'bg-[#0080FF] text-white border-b-2 border-[#00FFBE]'
-                  : 'bg-transparent text-[#4F9FFF] hover:bg-[#1A3A6E]'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
+        {/* 顶部标签页 - 精确的3等分布局 */}
+        <div className="flex justify-center mb-6 w-full">
+          <div className="flex gap-1 bg-[rgba(12,30,62,0.6)] p-1 rounded-lg border ">
+            {Object.keys(tabData).map((tab) => (
+              <div
+                key={tab}
+                onClick={() => handleTabChange(tab)}
+                className={`flex-1 w-1/3 px-5 py-2 text-sm font-medium transition-all duration-300 rounded-md border-[rgba(79,159,255,0.2)] ${activeTab === tab
+                  ? 'text-[#00FFFF] text-white shadow-md'
+                  : 'text-[#5BDEAB] hover:text-white hover:bg-[rgba(30,80,144,0.2)]'
+                  }`}
+                style={{
+                  borderRadius: '4px',
+                }}
+              >
+                {tab}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* 统计数据 */}
@@ -171,7 +146,9 @@ export function P2() {
         </div>
 
         {/* 图表 */}
-        <div ref={chartRef} className="h-[60%] w-full"></div>
+        <div className="h-[60%] w-full">
+          <Chart option={chartOption} />
+        </div>
       </div>
     </Block>
   );
