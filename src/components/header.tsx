@@ -1,7 +1,3 @@
-/**
- * 大屏头部
- */
-
 import returnIcon from "../assets/header/return.png";
 
 export function Header({
@@ -43,7 +39,13 @@ export function Header({
         </div>
         <div className="flex gap-10 pl-10 pt-4">
           {right.map((item) => (
-            <div className="text-2xl text-white" key={item}>
+            <div
+              className={`text-2xl  cursor-pointer ${
+                active === item ? "text-[#00FFFF] border-b-2" : "text-white"
+              }`}
+              key={item}
+              onClick={() => setActive(item)}
+            >
               {item}
             </div>
           ))}
