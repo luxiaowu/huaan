@@ -15,15 +15,6 @@ export function P4() {
 
   // 柱状图配置
   const barOption: EChartsOption = {
-    title: {
-      text: "华安县地区生产总值",
-      left: "center",
-      textStyle: {
-        color: "#42DEFF",
-        fontSize: 18,
-        fontWeight: "bold",
-      },
-    },
     tooltip: {
       trigger: "axis",
       axisPointer: {
@@ -35,7 +26,8 @@ export function P4() {
     },
     legend: {
       data: ["2024", "2023"],
-      top: 30,
+      left: 0,
+      top: 0,
       textStyle: {
         color: "#8AB4D9",
         fontSize: 14,
@@ -44,7 +36,8 @@ export function P4() {
     grid: {
       left: "3%",
       right: "4%",
-      bottom: "3%",
+      bottom: "10%",
+      top: "15%",
       containLabel: true,
     },
     xAxis: [
@@ -60,6 +53,10 @@ export function P4() {
           color: "#8AB4D9",
           fontSize: 12,
           rotate: 0,
+          interval: 0,
+          formatter: function (value: string) {
+            return value;
+          },
         },
         axisTick: {
           alignWithLabel: true,
@@ -69,7 +66,6 @@ export function P4() {
     yAxis: [
       {
         type: "value",
-        name: "单位: 亿元",
         nameTextStyle: {
           color: "#8AB4D9",
           fontSize: 12,
@@ -104,6 +100,7 @@ export function P4() {
             { offset: 0, color: "#00B8FF" },
             { offset: 1, color: "#0072D5" },
           ]),
+          borderRadius: [4, 4, 0, 0],
         },
         emphasis: {
           itemStyle: {
@@ -124,6 +121,7 @@ export function P4() {
             { offset: 0, color: "#42DEFF" },
             { offset: 1, color: "#0055A8" },
           ]),
+          borderRadius: [4, 4, 0, 0],
         },
         emphasis: {
           itemStyle: {
@@ -156,12 +154,12 @@ export function P4() {
     <Block className="h-full w-full px-2" title={"华安县地区生产总值"}>
       <div className="w-full h-full p-4 flex flex-col">
         {/* 单位说明 */}
-        <div className="text-[#8AB4D9] text-[14px] mb-4 self-start pl-2">
+        <div className="text-[#8AB4D9] text-[14px] mb-1 self-start pl-2">
           单位: 亿元
         </div>
 
         {/* 图表容器 */}
-        <div className="flex-1 relative border border-[#0072D5]/30 rounded-md bg-[#01193C]/50 p-4">
+        <div className="flex-1 relative   pxx-4">
           <Chart
             ref={chartRef}
             style={{ width: "100%", height: "100%" }}

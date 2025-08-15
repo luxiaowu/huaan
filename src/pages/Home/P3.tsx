@@ -18,7 +18,7 @@ export function P3() {
     title: {
       text: "县域产业构成图",
       left: "center",
-      top: 20,
+      top: 0,
       textStyle: {
         color: "#8AB4D9",
         fontSize: 16,
@@ -31,7 +31,7 @@ export function P3() {
     },
     legend: {
       data: ["矿产资源", "农业产业", "文化旅游产业"],
-      bottom: 10,
+      bottom: 0,
       left: "center",
       textStyle: {
         color: "#8AB4D9",
@@ -49,7 +49,7 @@ export function P3() {
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 0,
-          borderColor: "#011736",
+          borderColor: "#FFFFFF",
           borderWidth: 2,
         },
         label: {
@@ -73,8 +73,8 @@ export function P3() {
             color: "#8AB4D9",
             width: 1,
           },
-          length: 20,
-          length2: 30,
+          length: 15,
+          length2: 20,
         },
         data: industryData.map((item) => ({
           value: item.value,
@@ -82,18 +82,65 @@ export function P3() {
           itemStyle: {
             color: item.color,
           },
+          // 为文化旅游产业设置特殊的标签位置
+          label:
+            item.name === "文化旅游产业"
+              ? {
+                  position: "right",
+                  formatter: (params: any) => {
+                    return `{name|${params.name}}\n{value|${params.value}%}`;
+                  },
+                  rich: {
+                    value: {
+                      color: "#FFFFFF",
+                      fontSize: 12,
+                      fontWeight: "normal",
+                      align: "center",
+                    },
+                    name: {
+                      color: item.color,
+                      fontSize: 12,
+                      fontWeight: "normal",
+                      align: "center",
+                    },
+                  },
+                }
+              : {
+                  formatter: (params: any) => {
+                    return `{value|${params.name}}\n{name|${params.value}%}`;
+                  },
+                  rich: {
+                    value: {
+                      color: "#FFFFFF",
+                      fontSize: 12,
+                      fontWeight: "normal",
+                      align: "center",
+                    },
+                    name: {
+                      color: item.color,
+                      fontSize: 12,
+                      fontWeight: "normal",
+                      align: "center",
+                    },
+                  },
+                },
+          // 为每个数据项设置与区域颜色一致的线条
+          labelLine: {
+            lineStyle: {
+              color: item.color,
+            },
+          },
         })),
         // 饼图中心文本
         centerText: [
           {
             text: "总产值",
-            color: "#FFFFFF",
-            fontSize: 16,
-            fontWeight: "bold",
+            color: "#fff",
+            fontSize: 14,
           },
           {
             text: "3个主导产业",
-            color: "#42DEFF",
+            color: "#8AB4D9",
             fontSize: 12,
           },
         ],
@@ -112,16 +159,6 @@ export function P3() {
           const radius = series.radius;
           const centerText = series.centerText;
 
-          // 清除之前的中心文本
-          // chart.getZr().clear();
-
-          // 计算中心位置 - 修复坐标系问题
-          // 使用百分比直接计算中心点像素位置
-          const pixelCenter = [
-            chart.getWidth() * (parseFloat(center[0]) / 100),
-            chart.getHeight() * (parseFloat(center[1]) / 100),
-          ];
-
           // 绘制中心文本
           centerText.forEach((textItem: any, index: number) => {
             const textStyle = {
@@ -138,7 +175,7 @@ export function P3() {
                   ...textStyle,
                   text: textItem.text,
                 },
-                position: [pixelCenter[0], pixelCenter[1] - 10 + index * 20],
+                position: [150, 110 + index * 20],
               })
             );
           });
@@ -169,7 +206,7 @@ export function P3() {
     <Block className="h-full w-full px-2" title="县域产业">
       <div className="w-full h-full p-4 flex flex-col">
         {/* 图表容器 */}
-        <div className="flex-1 relative border border-[#0072D5]/30 rounded-md bg-[#01193C]/50 p-4">
+        <div className="flex-1 relative  rounded-md  ">
           <Chart
             ref={chartRef}
             style={{ width: "100%", height: "100%" }}

@@ -161,7 +161,7 @@ export function P1() {
       <div className="grid grid-cols-1 grid-rows-[2fr_1fr] gap-4 h-full">
         {/* 柱状图 */}
         <div className="p-2 flex-1 relative overflow-hidden">
-          <div className="text-[#D1D5DB] text-sm mb-2 flex items-center gap-1">
+          <div className="text-[#A7C4E9] text-sm mb-2 flex items-center gap-1">
             <span className="text-xs font-bold mr-2">单位: 个</span>
           </div>
           <Chart option={chartOption} className="w-full h-[calc(100%-24px)]" />
@@ -172,7 +172,7 @@ export function P1() {
           {statsData.map((stat, index) => (
             <div
               key={index}
-              className="flex gap-2 items-start bg-[#0A1F44] rounded-lg border border-[#0073D6] p-2 relative overflow-hidden"
+              className="flex gap-2 items-start bg-[#0A1F44] rounded-lg border border-[#1B3B71] p-2 relative overflow-hidden"
             >
               <img
                 className="w-10 h-10"
