@@ -24,8 +24,10 @@ export function Header({
         <div className="flex gap-10 pl-10 pt-4">
           {left.map((item) => (
             <div
-              className={`text-2xl  cursor-pointer ${
-                active === item ? "text-[#00FFFF] border-b-2" : "text-white"
+              className={`text-2xl  pb-2 cursor-pointer ${
+                active === item
+                  ? "text-[#00FFFF] bg-[url('/img/line.png')] bg-bottom bg-no-repeat bg-contain"
+                  : "text-white"
               }`}
               key={item}
               onClick={() => setActive(item)}
@@ -40,8 +42,10 @@ export function Header({
         <div className="flex gap-10 pl-10 pt-4">
           {right.map((item) => (
             <div
-              className={`text-2xl  cursor-pointer ${
-                active === item ? "text-[#00FFFF] border-b-2" : "text-white"
+              className={`text-2xl  pb-2  cursor-pointer ${
+                active === item
+                  ? "text-[#00FFFF]  bg-[url('/img/line.png')] bg-bottom bg-no-repeat bg-contain"
+                  : "text-white"
               }`}
               key={item}
               onClick={() => setActive(item)}
