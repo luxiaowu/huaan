@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/huaan',
+  build: {
+    outDir: 'docs',
+  },
   plugins: [react(), tailwindcss()],
   server: {
     host: '0.0.0.0', // 允许外部访问
