@@ -48,10 +48,10 @@ export function P2() {
     },
     grid: {
       top: 20,
-      left: '5%',
-      right: '5%',
-      bottom: '10%',
-      containLabel: true
+      left: "5%",
+      right: "5%",
+      bottom: "10%",
+      containLabel: true,
     },
     xAxis: {
       type: "category",
@@ -135,7 +135,9 @@ export function P2() {
         <div className="flex justify-between items-center mb-8 mt-2 px-4">
           <div className="text-center">
             <div className="text-white text-lg mb-1">累计</div>
-            <div className="text-[#00FFBE] text-3xl font-bold">{data.total.toLocaleString()}</div>
+            <div className="text-[#00FFBE] text-3xl font-bold">
+              {data.total.toLocaleString()}
+            </div>
           </div>
           <div className="text-center">
             <div className="text-white text-lg mb-1">本月</div>
@@ -145,7 +147,9 @@ export function P2() {
           </div>
           <div className="text-center">
             <div className="text-white text-lg mb-1">上月</div>
-            <div className="text-[#00A2FF] text-3xl font-bold">{data.lastMonth}</div>
+            <div className="text-[#00A2FF] text-3xl font-bold">
+              {data.lastMonth}
+            </div>
           </div>
         </div>
 
@@ -159,49 +163,69 @@ export function P2() {
           <Chart
             option={{
               tooltip: {
-                trigger: 'item',
-                formatter: '{b}: {c} ({d}%)',
-                backgroundColor: 'rgba(12,30,62,0.9)',
-                borderColor: '#4F9FFF',
-                textStyle: { color: '#fff' }
+                trigger: "item",
+                formatter: "{b}: {c} ({d}%)",
+                backgroundColor: "rgba(12,30,62,0.9)",
+                borderColor: "#4F9FFF",
+                textStyle: { color: "#fff" },
               },
               legend: {
-                orient: 'horizontal',
+                orient: "horizontal",
                 bottom: 0,
                 textStyle: {
-                  color: '#ffffff',
-                  fontSize: 11
+                  color: "#ffffff",
+                  fontSize: 11,
                 },
-                itemGap: 15
+                itemGap: 15,
               },
               series: [
                 {
-                  name: '数据分布',
-                  type: 'pie',
-                  radius: '60%',
-                  center: ['50%', '40%'],
+                  name: "数据分布",
+                  type: "pie",
+                  radius: "60%",
+                  center: ["50%", "40%"],
                   data: [
-                    { value: data.chartData[0], name: data.categories[0], itemStyle: { color: '#5ED3D9' } },
-                    { value: data.chartData[1], name: data.categories[1], itemStyle: { color: '#A3EFF8' } },
-                    { value: data.chartData[2], name: data.categories[2], itemStyle: { color: '#52BDE7' } },
-                    { value: data.chartData[3], name: data.categories[3], itemStyle: { color: '#21476B' } },
-                    { value: data.chartData[4], name: data.categories[4], itemStyle: { color: '#75838F' } }
+                    {
+                      value: data.chartData[0],
+                      name: data.categories[0],
+                      itemStyle: { color: "#5ED3D9" },
+                    },
+                    {
+                      value: data.chartData[1],
+                      name: data.categories[1],
+                      itemStyle: { color: "#A3EFF8" },
+                    },
+                    {
+                      value: data.chartData[2],
+                      name: data.categories[2],
+                      itemStyle: { color: "#52BDE7" },
+                    },
+                    {
+                      value: data.chartData[3],
+                      name: data.categories[3],
+                      itemStyle: { color: "#21476B" },
+                    },
+                    {
+                      value: data.chartData[4],
+                      name: data.categories[4],
+                      itemStyle: { color: "#75838F" },
+                    },
                   ],
                   label: {
-                    show: false
+                    show: false,
                   },
                   labelLine: {
-                    show: false
+                    show: false,
                   },
                   emphasis: {
                     itemStyle: {
                       shadowBlur: 10,
                       shadowOffsetX: 0,
-                      shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                  }
-                }
-              ]
+                      shadowColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                  },
+                },
+              ],
             }}
           />
         </div>

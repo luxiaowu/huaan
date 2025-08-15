@@ -84,10 +84,10 @@ export function P1() {
       },
     },
     grid: {
-      left: "10%",
-      right: "10%",
+      left: "12%",
+      right: "12%",
       bottom: "10%",
-      top: "5%",
+      top: "10%",
       containLabel: true,
     },
     xAxis: [
@@ -95,12 +95,16 @@ export function P1() {
         type: "category",
         data: barChartData.categories,
         axisLine: {
-          lineStyle: {
-            color: "#42DEFF",
-          },
+          show: false, // 隐藏坐标轴
+        },
+        axisTick: {
+          show: false, // 隐藏刻度线
         },
         axisLabel: {
-          color: "#42DEFF",
+          color: "#8AB4D9",
+          interval: 0, // 强制显示所有标签
+          rotate: 0, // 不旋转标签
+          fontSize: 10, // 确保字体大小合适
         },
       },
     ],
@@ -108,18 +112,22 @@ export function P1() {
       {
         type: "value",
         max: 45,
+        interval: 15, // 设置刻度间隔为15
         axisLine: {
-          lineStyle: {
-            color: "#42DEFF",
-          },
+          show: false, // 隐藏坐标轴
+        },
+        axisTick: {
+          show: false, // 隐藏刻度线
         },
         splitLine: {
+          show: true,
           lineStyle: {
             color: "rgba(66, 222, 255, 0.1)",
+            type: "dashed", // 设置为虚线
           },
         },
         axisLabel: {
-          color: "#42DEFF",
+          color: "#A7C4E9",
         },
         splitArea: {
           show: false,
@@ -149,8 +157,8 @@ export function P1() {
   };
 
   return (
-    <Block title={"社情民意"} className="h-full w-full p-2">
-      <div className="grid grid-cols-1 grid-rows-2 gap-4 h-full">
+    <Block title={"社情民意"} className="h-full w-full px-2">
+      <div className="grid grid-cols-1 grid-rows-[2fr_1fr] gap-4 h-full">
         {/* 柱状图 */}
         <div className="p-2 flex-1 relative overflow-hidden">
           <div className="text-[#D1D5DB] text-sm mb-2 flex items-center gap-1">
@@ -160,20 +168,20 @@ export function P1() {
         </div>
 
         {/* 统计卡片 */}
-        <div className="grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-2 px-2">
           {statsData.map((stat, index) => (
             <div
               key={index}
-              className="flex gap-4 items-center bg-[#0A1F44] rounded-lg border border-[#0073D6] p-3 relative overflow-hidden"
+              className="flex gap-2 items-start bg-[#0A1F44] rounded-lg border border-[#0073D6] p-2 relative overflow-hidden"
             >
               <img
-                className="w-14 h-14"
+                className="w-10 h-10"
                 src={iconMap[stat.icon as keyof typeof iconMap]}
                 alt=""
               />
               <div>
-                <div className="text-[#42DEFF] text-xl mb-1">{stat.title}</div>
-                <div className="text-xl font-bold text-white mt-2">
+                <div className="text-[#5BDEAB] text-lg ">{stat.title}</div>
+                <div className="text-lg font-bold  text-[#00E4FF]">
                   {stat.value}
                 </div>
               </div>
