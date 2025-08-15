@@ -172,8 +172,8 @@ export function P1() {
                 alt=""
               />
               <div>
-                <div className="text-[#42DEFF] text-2xl mb-1">{stat.title}</div>
-                <div className="text-2xl font-bold text-white mt-2">
+                <div className="text-[#42DEFF] text-xl mb-1">{stat.title}</div>
+                <div className="text-xl font-bold text-white mt-2">
                   {stat.value}
                 </div>
               </div>
