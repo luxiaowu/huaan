@@ -31,7 +31,7 @@ export function P3() {
     },
     legend: {
       data: ["矿产资源", "农业产业", "文化旅游产业"],
-      bottom: 0,
+      bottom: 0, // 增加与环形图的距离
       left: "center",
       textStyle: {
         color: "#8AB4D9",
@@ -44,8 +44,8 @@ export function P3() {
       {
         name: "产业占比",
         type: "pie",
-        radius: ["40%", "70%"],
-        center: ["50%", "50%"],
+        radius: ["36%", "60%"], // 缩小环形图半径，增加空白区域
+        center: ["50%", "50%"], // 调整中心位置以保持平衡
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 0,
@@ -83,47 +83,25 @@ export function P3() {
             color: item.color,
           },
           // 为文化旅游产业设置特殊的标签位置
-          label:
-            item.name === "文化旅游产业"
-              ? {
-                  position: "right",
-                  formatter: (params: any) => {
-                    return `{name|${params.name}}\n{value|${params.value}%}`;
-                  },
-                  rich: {
-                    value: {
-                      color: "#FFFFFF",
-                      fontSize: 12,
-                      fontWeight: "normal",
-                      align: "center",
-                    },
-                    name: {
-                      color: item.color,
-                      fontSize: 12,
-                      fontWeight: "normal",
-                      align: "center",
-                    },
-                  },
-                }
-              : {
-                  formatter: (params: any) => {
-                    return `{value|${params.name}}\n{name|${params.value}%}`;
-                  },
-                  rich: {
-                    value: {
-                      color: "#FFFFFF",
-                      fontSize: 12,
-                      fontWeight: "normal",
-                      align: "center",
-                    },
-                    name: {
-                      color: item.color,
-                      fontSize: 12,
-                      fontWeight: "normal",
-                      align: "center",
-                    },
-                  },
-                },
+          label: {
+            formatter: (params: any) => {
+              return `{value|${params.name}}\n{name|${params.value}%}`;
+            },
+            rich: {
+              name: {
+                color: "#FFFFFF",
+                fontSize: 12,
+                fontWeight: "normal",
+                align: "center",
+              },
+              value: {
+                color: item.color,
+                fontSize: 12,
+                fontWeight: "normal",
+                align: "center",
+              },
+            },
+          },
           // 为每个数据项设置与区域颜色一致的线条
           labelLine: {
             lineStyle: {
@@ -132,18 +110,18 @@ export function P3() {
           },
         })),
         // 饼图中心文本
-        centerText: [
-          {
-            text: "总产值",
-            color: "#fff",
-            fontSize: 14,
-          },
-          {
-            text: "3个主导产业",
-            color: "#8AB4D9",
-            fontSize: 12,
-          },
-        ],
+        // centerText: [
+        //   {
+        //     text: "总产值",
+        //     color: "#fff",
+        //     fontSize: 15,
+        // },
+        // {
+        //   text: "3个主导产业",
+        //   color: "#8AB4D9",
+        //   fontSize: 12,
+        // },
+        // ],
       },
     ],
   };
@@ -203,10 +181,18 @@ export function P3() {
   }, []);
 
   return (
-    <Block className="h-full w-full px-2" title="县域产业">
-      <div className="w-full h-full p-4 flex flex-col">
+    <Block className="h-full w-full px-2 " title="县域产业">
+      <div className="w-full h-full p-4 flex flex-col ">
         {/* 图表容器 */}
-        <div className="flex-1 relative  rounded-md  ">
+        <div
+          className="flex-1 relative  rounded-md  w-full"
+          style={{
+            backgroundImage: "url(/img/circle.png)",
+            backgroundSize: "200px 200px", // 缩小背景图大小以匹配环形图
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <Chart
             ref={chartRef}
             style={{ width: "100%", height: "100%" }}
@@ -215,21 +201,27 @@ export function P3() {
         </div>
 
         {/* 数据展示 - 匹配设计图中的34.44% */}
-        <div className="grid grid-cols-3 gap-0 mt-4">
+        <div
+          className="grid grid-cols-1 mt-4 w-full
+"
+        >
           {[
             { name: "矿产资源", value: 34.44, color: "#00B8FF" },
             { name: "文化旅游产业", value: 34.44, color: "#FFD600" },
             { name: "农业产业", value: 34.44, color: "#00E4FF" },
           ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center p-2">
-              <div className="flex items-center gap-2 mb-1">
+            <div
+              key={index}
+              className="flex justify-between items-center p-2 gap-x-20"
+            >
+              <div className="flex items-center gap-x-2 ">
                 <div
                   className="w-3 h-3"
                   style={{ backgroundColor: item.color }}
                 ></div>
-                <div className="text-white text-[14px]">{item.name}</div>
+                <div className="text-white text-[14px] flex">{item.name}</div>
               </div>
-              <div className="text-[#00E4FF] text-[20px] font-bold">
+              <div className="text-[#00E4FF] text-[15px] font-bold">
                 {item.value}%
               </div>
             </div>
