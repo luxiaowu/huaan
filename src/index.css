@@ -7,6 +7,15 @@
 	}
 }
 
+@layer utilities {
+	.flex-1 {
+		flex: 1;
+	}
+	.flex-2 {
+		flex: 2;
+	}
+}
+
 @layer components {
 	.main-container {
 		@apply absolute left-0 top-0 bg-no-repeat;
@@ -55,8 +64,11 @@
 		@apply bg-no-repeat bg-center;
 	}
 	.bottom-container {
+		width: 100%;
+
 		background-image: url("/img/bottom-bg.png");
-		@apply w-[810px] h-[130px] bg-no-repeat;
+		@apply  h-[130px] bg-no-repeat;
+		background-size: 100% 100%;
 	}
 	.bottom-data-text {
 		background-image: url("/img/bg-data-text.png");

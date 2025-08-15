@@ -182,20 +182,21 @@ export function P3() {
 
   return (
     <Block className="h-full w-full px-2 " title="县域产业">
-      <div className="w-full h-full p-4 flex flex-col ">
+      <div className="w-full h-full px-4 flex flex-col ">
         {/* 图表容器 */}
         <div
-          className="flex-1 relative  rounded-md  w-full"
+          className="flex-1 relative  rounded-md  w-full "
           style={{
             backgroundImage: "url(/img/circle.png)",
             backgroundSize: "200px 200px", // 缩小背景图大小以匹配环形图
-            backgroundPosition: "center",
+            backgroundPosition: "50% 50%",
+
             backgroundRepeat: "no-repeat",
           }}
         >
           <Chart
             ref={chartRef}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "250px" }}
             option={pieOption}
           />
         </div>

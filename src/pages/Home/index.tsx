@@ -6,7 +6,6 @@ import { P2 } from "./P2";
 import { P3 } from "./P3";
 import { P4 } from "./P4";
 
-
 const Home = () => {
   return (
     <div className={"z-10 absolute inset-6  flex gap-6"}>
