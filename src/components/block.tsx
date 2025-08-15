@@ -13,9 +13,7 @@ export function Block(prop: BlockProps) {
 	return (
 		<div className={`block-container ${prop.className || ''}`}>
 			<div
-				className={
-					'h-9 pl-3 flex items-center'
-				}
+				className={'h-9 pl-3 flex items-center'}
 				style={{
 					background: 'linear-gradient(90deg, #0072D5 0%, rgba(1,24,55,0.2) 100%)'
 				}}

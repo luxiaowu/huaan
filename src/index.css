@@ -28,7 +28,8 @@
 	}
 	.p1-block-container {
 		/*background-image: url("/img/p1-block-bg.png");*/
-		@apply p-3 flex justify-between items-center w-[218px] h-[90px] bg-no-repeat;
+		@apply p-3 flex justify-between items-center w-[218px] h-[90px] bg-no-repeat bg-[length:100%_100%];
+
 	}
 	.main-font {
 		@apply relative h-10 bg-clip-text text-[40px] text-transparent mt-4 font-semibold leading-none bg-gradient-to-b from-[#ffffff] to-[#2196FA];
