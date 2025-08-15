@@ -1,8 +1,8 @@
-import * as echarts from 'echarts';
-import { useEffect, useRef } from 'react';
-import { Block } from '../../components/block';
+import * as echarts from "echarts";
+import { useEffect, useRef } from "react";
+import { Block } from "../../components/block";
 
-export function P1() {
+export default function B1() {
   // 引用图表容器
   const trendChartRef = useRef<HTMLDivElement>(null);
   const pieChartRef = useRef<HTMLDivElement>(null);
@@ -13,29 +13,37 @@ export function P1() {
     if (trendChartRef.current) {
       const trendChart = echarts.init(trendChartRef.current);
       trendChart.setOption({
-        tooltip: { trigger: 'axis' },
-        grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
-        xAxis: { type: 'category', data: Array.from({ length: 30 }, (_, i) => i + 1) },
-        yAxis: { type: 'value' },
-        series: [{
-          name: '发布数量',
-          type: 'line',
-          smooth: true,
-          data: [12, 19, 13, 15, 12, 13, 10, 15, 12, 17, 14, 12, 10, 15, 12, 17, 14, 12, 10, 15, 12, 17, 14, 12, 10, 15, 18, 20, 22, 25],
-          lineStyle: { color: '#42DEFF' },
-          areaStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: 'rgba(66, 222, 255, 0.5)' },
-              { offset: 1, color: 'rgba(66, 222, 255, 0)' }
-            ])
-          }
-        }]
+        tooltip: { trigger: "axis" },
+        grid: { left: "3%", right: "4%", bottom: "3%", containLabel: true },
+        xAxis: {
+          type: "category",
+          data: Array.from({ length: 30 }, (_, i) => i + 1),
+        },
+        yAxis: { type: "value" },
+        series: [
+          {
+            name: "发布数量",
+            type: "line",
+            smooth: true,
+            data: [
+              12, 19, 13, 15, 12, 13, 10, 15, 12, 17, 14, 12, 10, 15, 12, 17,
+              14, 12, 10, 15, 12, 17, 14, 12, 10, 15, 18, 20, 22, 25,
+            ],
+            lineStyle: { color: "#42DEFF" },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: "rgba(66, 222, 255, 0.5)" },
+                { offset: 1, color: "rgba(66, 222, 255, 0)" },
+              ]),
+            },
+          },
+        ],
       });
 
       // 响应窗口大小变化
       const resizeHandler = () => trendChart.resize();
-      window.addEventListener('resize', resizeHandler);
-      return () => window.removeEventListener('resize', resizeHandler);
+      window.addEventListener("resize", resizeHandler);
+      return () => window.removeEventListener("resize", resizeHandler);
     }
   }, []);
 
@@ -44,38 +52,45 @@ export function P1() {
     if (pieChartRef.current) {
       const pieChart = echarts.init(pieChartRef.current);
       pieChart.setOption({
-        tooltip: { trigger: 'item' },
-        legend: { top: 'bottom', textStyle: { color: '#fff' } },
-        series: [{
-          name: '通知级别',
-          type: 'pie',
-          radius: ['40%', '70%'],
-          avoidLabelOverlap: false,
-          itemStyle: {
-            borderRadius: 10,
-            borderColor: '#0F1C3F',
-            borderWidth: 2
+        tooltip: { trigger: "item" },
+        legend: { top: "bottom", textStyle: { color: "#fff" } },
+        series: [
+          {
+            name: "通知级别",
+            type: "pie",
+            radius: ["40%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: "#0F1C3F",
+              borderWidth: 2,
+            },
+            label: { show: false },
+            emphasis: {
+              label: { show: true, fontSize: "16", fontWeight: "bold" },
+            },
+            labelLine: { show: false },
+            data: [
+              { value: 342, name: "县级", itemStyle: { color: "#42DEFF" } },
+              { value: 428, name: "乡镇", itemStyle: { color: "#36CFC9" } },
+              { value: 516, name: "村级", itemStyle: { color: "#722ED1" } },
+            ],
           },
-          label: { show: false },
-          emphasis: { label: { show: true, fontSize: '16', fontWeight: 'bold' } },
-          labelLine: { show: false },
-          data: [
-            { value: 342, name: '县级', itemStyle: { color: '#42DEFF' } },
-            { value: 428, name: '乡镇', itemStyle: { color: '#36CFC9' } },
-            { value: 516, name: '村级', itemStyle: { color: '#722ED1' } }
-          ]
-        }]
+        ],
       });
 
       // 响应窗口大小变化
       const resizeHandler = () => pieChart.resize();
-      window.addEventListener('resize', resizeHandler);
-      return () => window.removeEventListener('resize', resizeHandler);
+      window.addEventListener("resize", resizeHandler);
+      return () => window.removeEventListener("resize", resizeHandler);
     }
   }, []);
 
   return (
-    <Block title={'通知公告管理中心'} className="bg-[#0F1C3F] text-white w-full p-2 flex-2">
+    <Block
+      title={"通知公告管理中心"}
+      className="bg-[#0F1C3F] text-white w-full p-2 flex-2"
+    >
       <div className="grid grid-cols-2 gap-2 mb-2">
         {/* 累计发布信息数 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
