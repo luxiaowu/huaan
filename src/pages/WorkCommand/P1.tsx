@@ -23,10 +23,12 @@ export function P1() {
           smooth: true,
           data: [12, 19, 13, 15, 12, 13, 10, 15, 12, 17, 14, 12, 10, 15, 12, 17, 14, 12, 10, 15, 12, 17, 14, 12, 10, 15, 18, 20, 22, 25],
           lineStyle: { color: '#42DEFF' },
-          areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(66, 222, 255, 0.5)' },
-            { offset: 1, color: 'rgba(66, 222, 255, 0)' }
-          ]) }
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(66, 222, 255, 0.5)' },
+              { offset: 1, color: 'rgba(66, 222, 255, 0)' }
+            ])
+          }
         }]
       });
 
@@ -74,11 +76,11 @@ export function P1() {
 
   return (
     <Block title={'通知公告管理中心'} className="bg-[#0F1C3F] text-white h-full w-full p-2">
-      <div className="grid grid-cols-2 gap-2 mb-2 h-[120px]">
+      <div className="grid grid-cols-2 gap-2 mb-2 h-[100px]">
         {/* 累计发布信息数 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">累计发布信息数</div>
-          <div className="text-3xl font-bold text-white mt-1">1,286</div>
+          <div className="text-2xl font-bold text-white mt-1">1,286</div>
           <div className="flex items-center text-xs mt-1">
             <span className="text-[#36CFC9] mr-1">●</span>
             <span className="text-[#86909C]">生成: 540</span>
@@ -92,7 +94,7 @@ export function P1() {
         {/* 本期推送数 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">本期推送数</div>
-          <div className="text-3xl font-bold text-white mt-1">42</div>
+          <div className="text-2xl font-bold text-white mt-1">42</div>
           <div className="flex items-center text-xs text-[#36CFC9] mt-1">
             <span className="mr-1">↑</span>
             <span>+12.6% 较上周</span>
@@ -100,7 +102,7 @@ export function P1() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 h-[calc(100%-124px)]">
+      <div className="grid grid-cols-2 gap-2 h-[calc(100%-20px)]">
         {/* 近30天通知发布趋势 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col">
           <div className="text-[#86909C] text-sm mb-2">近30天通知发布趋势</div>

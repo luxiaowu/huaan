@@ -1,90 +1,87 @@
-import * as echarts from 'echarts';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Block } from '../../components/block';
+import { Chart } from '../../components/charts';
 
 export function P2() {
-  // 引用图表容器
-  const barChartRef = useRef<HTMLDivElement>(null);
   // 切换状态：true 表示显示乡镇数据，false 表示显示村庄数据
   const [showTown, setShowTown] = useState(true);
 
-  // 初始化图表
-  useEffect(() => {
-    if (barChartRef.current) {
-      const barChart = echarts.init(barChartRef.current);
+  // 定义乡镇和村庄数据
+  const townData = [
+    { name: '瑞洪镇', value: 86 },
+    { name: '高安市', value: 78 },
+    { name: '沙洲镇', value: 65 },
+    { name: '华林镇', value: 52 }
+  ];
 
-      // 定义乡镇和村庄数据
-      const townData = [
-        { name: '瑞洪镇', value: 86 },
-        { name: '高安市', value: 78 },
-        { name: '沙洲镇', value: 65 },
-        { name: '华林镇', value: 52 }
-      ];
+  const villageData = [
+    { name: '东村', value: 45 },
+    { name: '西村', value: 38 },
+    { name: '南村', value: 32 },
+    { name: '北村', value: 28 },
+    { name: '中村', value: 22 }
+  ];
 
-      const villageData = [
-        { name: '东村', value: 45 },
-        { name: '西村', value: 38 },
-        { name: '南村', value: 32 },
-        { name: '北村', value: 28 },
-        { name: '中村', value: 22 }
-      ];
+  // 获取当前显示的数据
+  const currentData = showTown ? townData : villageData;
 
-      // 格式化数据为图表所需格式
-      const formatData = (data: { name: string; value: number }[]) => {
-        return {
-          xAxis: { data: data.map(item => item.name) },
-          series: [{
-            data: data.map(item => item.value),
-            itemStyle: { color: '#42DEFF' }
-          }]
-        };
-      };
-
-      // 设置图表选项
-      const option = {
-        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-        grid: { left: '3%', right: '4%', bottom: '8%', containLabel: true },
-        xAxis: { type: 'category', data: [], axisLabel: { color: '#fff', interval: 0 } },
-        yAxis: { type: 'value', axisLabel: { color: '#fff' } },
-        series: [{
-          name: '公示数量',
-          type: 'bar',
-          barWidth: '60%',
-          data: [],
-          label: {
-            show: true,
-            position: 'top',
-            color: '#fff'
-          }
-        }]
-      };
-
-      // 更新图表数据
-      const updateChart = (showTown: boolean) => {
-        const data = showTown ? townData : villageData;
-        const formattedData = formatData(data);
-        barChart.setOption({
-          xAxis: formattedData.xAxis,
-          series: formattedData.series
-        });
-      };
-
-      // 初始化图表
-      barChart.setOption(option);
-      updateChart(showTown);
-
-      // 响应窗口大小变化
-      const resizeHandler = () => barChart.resize();
-      window.addEventListener('resize', resizeHandler);
-
-      // 监听切换状态变化
-      const unsubscribe = () => {
-        window.removeEventListener('resize', resizeHandler);
-      };
-
-      return unsubscribe;
-    }
-  }, [showTown]);
+  // 图表配置 - 横向柱状图
+  const barChartOption = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(0,0,0,0.7)',
+      borderColor: '#0073D6',
+      textStyle: { color: '#fff' }
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '8%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      axisLabel: { color: '#fff' },
+      axisLine: {
+        lineStyle: { color: '#1E3A6F' }
+      },
+      splitLine: {
+        lineStyle: { color: 'rgba(30,58,111,0.3)' }
+      }
+    },
+    yAxis: {
+      type: 'category',
+      data: currentData.map(item => item.name),
+      axisLabel: {
+        color: '#fff',
+        interval: 0
+      },
+      axisLine: {
+        lineStyle: { color: '#1E3A6F' }
+      }
+    },
+    series: [{
+      name: '公示数量',
+      type: 'bar',
+      barWidth: '60%',
+      data: currentData.map(item => item.value),
+      itemStyle: {
+        color: '#42DEFF'
+      },
+      label: {
+        show: true,
+        position: 'right',
+        color: '#fff',
+        fontSize: 12
+      },
+      emphasis: {
+        itemStyle: {
+          color: '#5DEBFF'
+        }
+      }
+    }]
+  };
 
   // 群众查阅TOP公示信息数据
   const topPublicInfo = [
@@ -98,25 +95,25 @@ export function P2() {
   ];
 
   return (
-    <Block title={'政务信息公示公开统计'} className="bg-[#0F1C3F] text-white h-full w-full p-2">
+    <Block title={'政务信息公示公开统计'} className="bg-[#0F1C3F] text-white h-full w-full px-4 py-2">
       {/* 顶部统计卡片 */}
       <div className="grid grid-cols-3 gap-2 mb-3 h-[100px]">
         {/* 本月公示数 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">本月公示数</div>
-          <div className="text-3xl font-bold text-[#42DEFF] mt-1">156</div>
+          <div className="text-2xl font-bold text-[#42DEFF] mt-1">156</div>
         </div>
 
         {/* 同比 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">同比</div>
-          <div className="text-3xl font-bold text-[#36CFC9] mt-1">+8.2%</div>
+          <div className="text-2xl font-bold text-[#36CFC9] mt-1">+8.2%</div>
         </div>
 
         {/* 环比 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">环比</div>
-          <div className="text-3xl font-bold text-[#36CFC9] mt-1">+3.5%</div>
+          <div className="text-2xl font-bold text-[#36CFC9] mt-1">+3.5%</div>
         </div>
       </div>
 
@@ -154,7 +151,9 @@ export function P2() {
             </button>
           </div>
         </div>
-        <div ref={barChartRef} className="h-[calc(100%-24px)] w-full"></div>
+        <div className="h-[calc(100%-24px)] w-full">
+          <Chart option={barChartOption} />
+        </div>
       </div>
     </Block>
   );
