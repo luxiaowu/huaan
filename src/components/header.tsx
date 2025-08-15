@@ -1,12 +1,12 @@
 import returnIcon from "../assets/header/return.png";
 
-export function Header({
+const Header = ({
   active,
   setActive,
 }: {
   active: string;
   setActive: (active: string) => void;
-}) {
+}) => {
   const left = ["总览", "社情民意", "工作指挥"];
   const right = ["县域产业", "平台动态", "电商运营"];
 
@@ -36,7 +36,7 @@ export function Header({
             </div>
           ))}
         </div>
-        <div className="w-[900px] main-font text-center cursor-pointer">
+        <div className="w-[860px] main-font text-center cursor-pointer">
           华安数字乡村大数据平台
         </div>
         <div className="flex gap-10 pl-10 pt-4">
@@ -57,4 +57,6 @@ export function Header({
       </div>
     </div>
   );
-}
+};
+
+export default Header;

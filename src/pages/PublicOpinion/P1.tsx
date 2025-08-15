@@ -214,7 +214,7 @@ const regionChartOption: EChartsOption = {
 // 主数据
 export function P1() {
   return (
-    <Block title={"便民咨询"}>
+    <Block title={"便民咨询"} className="w-full">
       <div className="bg-[#0C1E3E] rounded-lg p-8 h-full flex flex-col">
         {/* 顶部统计数据 */}
         <div className="flex items-center mb-6 mt-2 pl-4">

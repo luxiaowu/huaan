@@ -3,27 +3,18 @@ import { Block } from '../../components/block';
 import { Chart } from '../../components/charts';
 
 export function P2() {
-  // 切换状态：true 表示显示乡镇数据，false 表示显示村庄数据
-  const [showTown, setShowTown] = useState(true);
-
-  // 定义乡镇和村庄数据
+  // 定义各乡镇公示公开数量数据
   const townData = [
-    { name: '瑞洪镇', value: 86 },
-    { name: '高安市', value: 78 },
-    { name: '沙洲镇', value: 65 },
-    { name: '华林镇', value: 52 }
+    { name: '华丰镇', value: 120 },
+    { name: '高安镇', value: 90 },
+    { name: '沙建镇', value: 80 },
+    { name: '丰山镇', value: 70 },
+    { name: '新圩镇', value: 50 },
+    { name: '仙都镇', value: 40 }
   ];
 
-  const villageData = [
-    { name: '东村', value: 45 },
-    { name: '西村', value: 38 },
-    { name: '南村', value: 32 },
-    { name: '北村', value: 28 },
-    { name: '中村', value: 22 }
-  ];
-
-  // 获取当前显示的数据
-  const currentData = showTown ? townData : villageData;
+  // 当前显示的数据
+  const currentData = townData;
 
   // 图表配置 - 横向柱状图
   const barChartOption = {
@@ -37,11 +28,12 @@ export function P2() {
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '8%',
+      bottom: '15%',
+      top: '5%',
       containLabel: true
     },
     xAxis: {
-      type: 'value',
+      type: 'value' as const,
       axisLabel: { color: '#fff' },
       axisLine: {
         lineStyle: { color: '#1E3A6F' }
@@ -51,20 +43,27 @@ export function P2() {
       }
     },
     yAxis: {
-      type: 'category',
+      type: 'category' as const,
       data: currentData.map(item => item.name),
       axisLabel: {
         color: '#fff',
-        interval: 0
+        interval: 0,
+        margin: 15
       },
       axisLine: {
         lineStyle: { color: '#1E3A6F' }
+      },
+      axisTick: {
+        show: true,
+        length: 8
       }
     },
     series: [{
       name: '公示数量',
       type: 'bar',
-      barWidth: '60%',
+      barWidth: '50%',
+      barGap: '10%',
+      barCategoryGap: '20%',
       data: currentData.map(item => item.value),
       itemStyle: {
         color: '#42DEFF'
@@ -83,19 +82,17 @@ export function P2() {
     }]
   };
 
-  // 群众查阅TOP公示信息数据
+  // 群众点击阅读TOP5公示信息数据
   const topPublicInfo = [
     { title: '2023年乡村医疗补助政策', views: 12584 },
-    { title: '华安县城南片区规划公示', views: 9752 },
-    { title: '2023年度农村危房改造实施方案', views: 8321 },
-    { title: '关于调整城乡居民基本医疗保险缴费标准的通知', views: 7654 },
-    { title: '2023年秋季中小学招生工作方案', views: 6987 },
-    { title: '农村饮水安全巩固提升工程实施方案', views: 5432 },
-    { title: '关于加强农村宅基地管理的实施意见', views: 4876 }
+    { title: '华安县城乡规划公示', views: 9752 },
+    { title: '2023年村级基层选举公告', views: 8424 },
+    { title: '农村住房改造项目公示', views: 7621 },
+    { title: '脱贫攻坚项目资金使用情况', views: 6891 }
   ];
 
   return (
-    <Block title={'政务信息公示公开统计'} className="bg-[#0F1C3F] text-white h-full w-full px-4 py-2">
+    <Block title={'政务信息公示公开统计'} className="bg-[#0F1C3F] text-white h-full w-full px-4 py-2 flex-3">
       {/* 顶部统计卡片 */}
       <div className="grid grid-cols-3 gap-2 mb-3 h-[100px]">
         {/* 本月公示数 */}
@@ -107,19 +104,19 @@ export function P2() {
         {/* 同比 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">同比</div>
-          <div className="text-2xl font-bold text-[#36CFC9] mt-1">+8.2%</div>
+          <div className="text-2xl font-bold text-[#36CFC9] mt-1">↑8.2%</div>
         </div>
 
         {/* 环比 */}
         <div className="bg-[#152950] rounded-lg p-3 flex flex-col justify-between">
           <div className="text-[#86909C] text-sm">环比</div>
-          <div className="text-2xl font-bold text-[#36CFC9] mt-1">+3.5%</div>
+          <div className="text-2xl font-bold text-[#36CFC9] mt-1">↑3.5%</div>
         </div>
       </div>
 
       {/* 群众查阅TOP公示信息 */}
       <div className="bg-[#152950] rounded-lg p-3 mb-3 h-[160px]">
-        <div className="text-[#86909C] text-sm mb-2">群众查阅TOP公示信息</div>
+        <div className="text-[#86909C] text-sm mb-2">群众点击阅读TOP5公示信息</div>
         <div className="overflow-y-auto h-[calc(100%-24px)] pr-2">
           {topPublicInfo.map((item, index) => (
             <div key={index} className="flex justify-between items-center py-2 border-b border-[#1E3A6F]">
@@ -134,22 +131,8 @@ export function P2() {
 
       {/* 各乡镇公示公开数量排行 */}
       <div className="bg-[#152950] rounded-lg p-3 h-[calc(100%-268px)]">
-        <div className="flex justify-between items-center mb-2">
+        <div className="mb-2">
           <div className="text-[#86909C] text-sm">各乡镇公示公开数量排行</div>
-          <div className="flex space-x-1">
-            <button
-              onClick={() => setShowTown(true)}
-              className={`px-3 py-1 text-xs rounded ${showTown ? 'bg-[#0073D6] text-white' : 'bg-[#1E3A6F] text-[#86909C]'}`}
-            >
-              乡镇
-            </button>
-            <button
-              onClick={() => setShowTown(false)}
-              className={`px-3 py-1 text-xs rounded ${!showTown ? 'bg-[#0073D6] text-white' : 'bg-[#1E3A6F] text-[#86909C]'}`}
-            >
-              村庄
-            </button>
-          </div>
         </div>
         <div className="h-[calc(100%-24px)] w-full">
           <Chart option={barChartOption} />
